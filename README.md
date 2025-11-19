@@ -1,4 +1,4 @@
-# `Lab6.2 API Simulator`
+# Lab6.2 API Simulator
 
 ## 📖 Overview
 
