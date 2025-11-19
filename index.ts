@@ -4,7 +4,7 @@ import {
     fetchSalesReport,
     NetworkError,
     DataError,
-} from "./apiSimulator";
+} from "./apiSimulator.js";
 
 /**
  * Orchestrates flow.
