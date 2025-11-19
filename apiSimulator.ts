@@ -12,6 +12,13 @@ export class DataError extends Error {
     }
 }
 
+/**
+ * Fetches the product catalog.
+ * • 80 % of the time the promise resolves with an array of product objects.
+ * • 20 % of the time it rejects with a {@link NetworkError}.
+ * @returns {Promise<{ id: number; name: string; price: number }[]>}
+ *          Promise that resolves to the catalog or rejects on failure.
+ */
 export const fetchProductCatalog = (): Promise<
     { id: number; name: string; price: number }[]
 > => {
@@ -29,6 +36,13 @@ export const fetchProductCatalog = (): Promise<
     });
 };
 
+/**
+ * Fetches the product review.
+ * • 80 % of the time the promise resolves with an array of product objects.
+ * • 20 % of the time it rejects with a {@link NetworkError}.
+ * @returns {Promise<{ productId: number; rating: number; review: string }[]>}
+ *          Promise that resolves to the product review or rejects on failure.
+ */
 export const fetchProductReview = (
     productId: number
 ): Promise<{ productId: number; rating: number; review: string }[]> => {
@@ -50,6 +64,13 @@ export const fetchProductReview = (
     });
 };
 
+/**
+ * Fetches the product review.
+ * • 75 % of the time the promise resolves with an array of product objects.
+ * • 25 % of the time it rejects with a {@link NetworkError}.
+ * @returns {Promise<{totalSales: number;unitsSold: number; averagePrice: number;}>}
+ *          Promise that resolves to the sales report or rejects on failure.
+ */
 export const fetchSalesReport = (): Promise<{
     totalSales: number;
     unitsSold: number;
