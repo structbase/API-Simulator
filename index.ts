@@ -2,15 +2,31 @@ import {
     fetchProductCatalog,
     fetchProductReview,
     fetchSalesReport,
+    NetworkError,
+    DataError,
 } from "./apiSimulator";
 
-function runApp() {
+/**
+ * Orchestrates flow.
+ * 1. @then catalog.
+ * 2. @then reviews.
+ * 3. @then report.
+ * 4. @then logs.
+ * 5. @finally done.
+ *
+ * @returns {Promise<void>} after API calls.
+ */
+function runApp(): void {
     fetchProductCatalog()
         .then((products) => {
             console.log("Products:", products);
-            // Map each product to a review Promise
             return Promise.all(
-                products.map((p) => fetchProductReview(p.id).catch((err) => []))
+                products.map((p) =>
+                    fetchProductReview(p.id).catch((err) => {
+                        console.error("Review Error:", err);
+                        return [];
+                    })
+                )
             );
         })
         .then((reviews) => {
@@ -28,5 +44,4 @@ function runApp() {
         });
 }
 
-
-runApp ()
+runApp();
